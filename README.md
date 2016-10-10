@@ -22,7 +22,7 @@ JS12 generator is an [yeoman](http://yeoman.io/) generator that will get you up 
 - [ ] Testing Frameworks:
     - [ ] [Mocha](https://mochajs.org/) and [Chai](http://chaijs.com/) test suite with [code coverage support](http://gotwarlost.github.io/istanbul/);
     - [ ] [Ava](https://github.com/avajs/ava) test suite with [code coverage support](https://github.com/istanbuljs/nyc).
-- [ ] Generated code has 100% code coverage in [Mocha](https://mochajs.org/) test suite;
+- [ ] Generated code has 100% code coverage;
 - [ ] Benchmark of API routes using [matcha](https://github.com/logicalparadox/matcha);
 - [ ] Profiling of API code with [njstrace](https://github.com/valyouw/njstrace);
 - [ ] Static Analysis of syntax, comments and duplicated code using [plato](https://github.com/es-analysis/plato);
