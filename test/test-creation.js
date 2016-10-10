@@ -13,6 +13,7 @@ const runBinary = function(command, cb) {
 }
 
 const getCoverage = function(stdout) {
+  console.log(stdout)
   const re = /(?:coverage[:]\s*(\d+[.]\d+)[%])/gi
   let coverage = 0
   let coverageCount = 1
@@ -31,20 +32,21 @@ describe('js12 generator', function () {
     describe('without services', function() {
       beforeEach(function () {
         const self = this
-        const dir = fs.mkdtempSync('/tmp/js12')
+        self.dir = fs.mkdtempSync('/tmp/js12')
         return helpers.
           run(path.join(__dirname, '../app')).
           on('ready', function (generator) {
             self.generator = generator
           }).
-          inDir(path.join(dir, 'test-package')).
+          inDir(path.join(self.dir, 'test-package')).
           withPrompts({
             packageName: 'test-package',
             description: 'an incredible node package',
-            keywords: 'test package',
+            keywords: ' test, package    ',
             authorName: 'Bernardo Heynemann',
             authorEmail: 'heynemann@gmail.com',
             url: 'https://github.com/heynemann/test-package',
+            repo: 'https://github.com/heynemann/test-package.git',
             license: 'MIT',
             services: [],
           }).toPromise()
@@ -60,23 +62,36 @@ describe('js12 generator', function () {
         assert.file(expected)
       })
 
-      it('runs setup', function(done) {
-        this.timeout(30000);
-        runBinary('make setup', function(error, stdout, stderr) {
-          expect(error).to.be.null
-          done()
-        });
+      it('has proper package info', function(done) {
+        const pkg = require(path.join(this.dir, 'test-package/package.json'))
+        expect(pkg.name).to.equal('test-package')
+        expect(pkg.description).to.equal('an incredible node package')
+        expect(pkg.version).to.equal('0.1.0')
+        expect(pkg.repository.type).to.equal('git')
+        expect(pkg.repository.url).to.equal('git+https://github.com/heynemann/test-package.git')
+
+        expect(pkg.keywords).to.length(2)
+        expect(pkg.keywords[0]).to.equal('test')
+        expect(pkg.keywords[1]).to.equal('package')
+
+        expect(pkg.author).to.equal('Bernardo Heynemann <heynemann@gmail.com>')
+        expect(pkg.license).to.equal('MIT')
+
+        expect(pkg.homepage).to.equal('https://github.com/heynemann/test-package')
+        expect(pkg.bugs.url).to.equal('https://github.com/heynemann/test-package/issues')
+        done()
       })
 
-      //it('runs tests', function(done) {
-        //this.timeout(30000);
-        //runBinary('make setup test', function(error, stdout, stderr) {
-          //expect(error).to.be.null
-
-          //expect(getCoverage(stdout)).to.equal(100.0)
-          //done()
-        //});
-      //})
+      describe('with mocha', function() {
+        it('runs tests', function(done) {
+          this.timeout(120000);
+          runBinary('make setup test', function(error, stdout, stderr) {
+            expect(error).to.be.null
+            expect(getCoverage(stdout)).to.equal(100.0)
+            done()
+          })
+        })
+      })
     })
   })
 })

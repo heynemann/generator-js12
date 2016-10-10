@@ -7,10 +7,13 @@ JS12 generator is an [yeoman](http://yeoman.io/) generator that will get you up 
 
 ## Features
 
-- [ ] Thorough suite of unit tests for generator code;
-- [ ] Comprehensive Makefile to setup, build, test, analyze, dockerize and document your package;
-- [ ] [npm](https://www.npmjs.com/) package manager;
-- [ ] [SemVer](http://semver.org/) compatible metadata versioning;
+- [x] Thorough suite of unit tests for generator code;
+- [x] Comprehensive Makefile to setup, build, test, analyze, dockerize and document your package;
+- [x] [npm](https://www.npmjs.com/) package manager;
+- [x] [nvm](https://github.com/creationix/nvm/) node version manager support;
+- [ ] Testing Frameworks:
+    - [ ] [Mocha](https://mochajs.org/) and [Chai](http://chaijs.com/) test suite with [code coverage support](http://gotwarlost.github.io/istanbul/);
+    - [ ] [Ava](https://github.com/avajs/ava) test suite with [code coverage support](https://github.com/istanbuljs/nyc).
 - [ ] [BabelJS](https://babeljs.io/) configured to enable modern JS;
 - [ ] [Webpack](https://webpack.github.io/) generated output for npm distribution;
 - [ ] [Nodemon](http://nodemon.io/)-powered Web Server to enable "live-reload" of changes;
@@ -19,9 +22,6 @@ JS12 generator is an [yeoman](http://yeoman.io/) generator that will get you up 
 - [ ] Configuration system using [node-config](https://github.com/lorenwest/node-config);
 - [ ] Structured logging using [Bunyan](https://github.com/trentm/node-bunyan);
 - [ ] [yargs.js](http://yargs.js.org/) commands;
-- [ ] Testing Frameworks:
-    - [ ] [Mocha](https://mochajs.org/) and [Chai](http://chaijs.com/) test suite with [code coverage support](http://gotwarlost.github.io/istanbul/);
-    - [ ] [Ava](https://github.com/avajs/ava) test suite with [code coverage support](https://github.com/istanbuljs/nyc).
 - [ ] Generated code has 100% code coverage;
 - [ ] Benchmark of API routes using [matcha](https://github.com/logicalparadox/matcha);
 - [ ] Profiling of API code with [njstrace](https://github.com/valyouw/njstrace);

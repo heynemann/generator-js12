@@ -19,8 +19,21 @@ const packageContents = [
   //Makefile
   { source: '_makefile', target: 'Makefile', ctx: getCtxFunc() },
 
+  //Node.js
+  { source: '_package.json', target: 'package.json', ctx: getCtxFunc() },
+
+  //NVM
+  { source: '_nvmrc', target: '.nvmrc', ctx: getCtxFunc() },
+
+  //Ecmascript 2015
+  { source: '_webpack.config.js', target: 'webpack.config.js', ctx: getCtxFunc() },
+  { source: '_babelrc', target: '.babelrc', ctx: getCtxFunc() },
+
   //.gitignore
   { source: '_gitignore', target: '.gitignore', ctx: getCtxFunc() },
+
+  //source
+  { source: '_cmd.js', target: 'src/cmd.js', ctx: getCtxFunc() },
 ]
 
 
@@ -52,6 +65,14 @@ function guessPackageURL(answers) {
   return 'https://github.com/someuser/somepackage';
 }
 
+function guessPackageRepo(answers) {
+  var emailParts = answers.authorEmail.split('@');
+  if (emailParts.length > 1) {
+    return 'https://github.com/' + emailParts[0] + '/' + answers.packageName + '.git'
+  }
+  return 'https://github.com/someuser/somepackage.git';
+}
+
 function getUsername(email) {
   var emailParts = email.split('@');
   if (emailParts.length > 1) {
@@ -77,6 +98,11 @@ var JS12Generator = generators.Base.extend({
     var self = this
     self.log(yosay('Welcome to JS12!!!\n\nRun this generator in your app folder\n(inside $GOPATH)'))
 
+    var testingFrameworks = [
+      { name: "Mocha/Chai", value: "mocha", checked: true },
+      { name: "Ava", value: "ava", checked: false },
+    ]
+
     getUserNameAndEmail(function(userName, userEmail) {
       var prompts = [{
         type: 'input',
@@ -101,20 +127,40 @@ var JS12Generator = generators.Base.extend({
         default: 'Awesome new node.js package',
       }, {
         type: 'input',
+        name: 'nodeVersion',
+        message: 'Node.js version:',
+        default: '6.7.0'
+      }, {
+        type: 'input',
         name: 'version',
         message: 'Package initial version:',
         default: '0.1.0'
       }, {
         type: 'input',
+        name: 'keywords',
+        message: 'Keywords for this package (comma-separated):',
+        default: ''
+      }, {
+        type: 'input',
         name: 'url',
-        message: 'Package url (this url will be used for all imports):',
+        message: 'Package url:',
         default: guessPackageURL
+      }, {
+        type: 'input',
+        name: 'repo',
+        message: 'Package repository (this url will be used for all imports):',
+        default: guessPackageRepo
       }, {
         type: 'input',
         name: 'license',
         message: 'Package license:',
         default: 'MIT',
         filter: escapeQuotes
+      }, {
+        type: 'list',
+        name: 'testingFramework',
+        message: 'Testing framework:',
+        choices: testingFrameworks
       }]
 
       return self.prompt(prompts).then(function (props) {
@@ -131,8 +177,11 @@ var JS12Generator = generators.Base.extend({
             email: props.authorEmail
           },
           version: props.version,
+          nodeVersion: props.nodeVersion,
           url: props.url,
+          repo: props.repo,
           license: props.license,
+          keywords: props.keywords.split(',').map(item => item.trimLeft().trimRight()),
           created: {
             day: new Date().getDay(),
             month: new Date().getMonth() + 1,
@@ -158,6 +207,7 @@ var JS12Generator = generators.Base.extend({
               require: false,
             },
           },
+          testingFramework: props.testingFramework,
         }
         done()
       })
@@ -166,6 +216,7 @@ var JS12Generator = generators.Base.extend({
 
   writing: function () {
     this._writeSource()
+    this._getUsageMessage()
   },
 
   _writeSource: function() {
@@ -173,31 +224,17 @@ var JS12Generator = generators.Base.extend({
       const item = this.packageContents[i]
       this.template(item.source, item.target, item.ctx(this))
     }
-    //this.template('_main.go', 'main.go', this.package)
-    //this.template('_main_test.go', 'main_test.go', this.package)
-    //this.template('_suite_test.go', 'main_suite_test.go', Object.assign({ pkg: 'main', title: 'Main' }, this.package))
-
-    //this.template('_suite_test.go', 'metadata/metadata_suite_test.go', Object.assign({ pkg: 'metadata', title: 'Metadata' }, this.package))
-    //this.template('_metadata_version.go', 'metadata/version.go', this.package)
-    //this.template('_metadata_version_test.go', 'metadata/version_test.go', this.package)
-
-    //this.template('_suite_test.go', 'cmd/cmd_suite_test.go', Object.assign({ pkg: 'cmd', title: 'Commands' }, this.package))
-    //this.template('_cmd_helpers_test.go', 'cmd/helpers_test.go', this.package)
-    //this.template('_cmd_root.go', 'cmd/root.go', this.package)
-    //this.template('_cmd_root_test.go', 'cmd/root_test.go', this.package)
-    //this.template('_cmd_version.go', 'cmd/version.go', this.package)
-    //this.template('_cmd_version_test.go', 'cmd/version_test.go', this.package)
   },
 
   _getUsageMessage: function() {
     var pkg = this.package
-    console.log(this.package)
-    //this.log("\n\nNow that your project is all created, here is what the make commands can do for you!\n");
-    //this.log("General commands:");
-    //this.log('* "make list" to list all available targets;');
-
-    //this.log('* "make setup" to install all dependencies (do not forget to create a virtualenv first);');
-    //this.log('* "make test" to test your application (tests in the tests/ directory);');
+    this.npmInstall('.', () => {
+      this.log("\n\nNow that your project is all created, here is what the make commands can do for you!\n");
+      this.log("General commands:");
+      this.log('* "make setup" to install all dependencies');
+      this.log('* "make build" to pre-compile all files');
+      this.log('* "make test" to test your application (tests in the test/ directory)');
+    })
 
     //if (pkg.services.redis) {
       //this.log("\nRedis commands:");
