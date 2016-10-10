@@ -8,7 +8,7 @@ JS12 generator is an yeoman generator that will get you up and running with a 12
 ## Features
 
 - [ ] Thorough suite of unit tests for generator code;
-- [ ] Comprehensive Makefile to setup, build, test, analyze, dockerize and document your Go Package;
+- [ ] Comprehensive Makefile to setup, build, test, analyze, dockerize and document your package;
 - [ ] [npm](https://www.npmjs.com/) package manager;
 - [ ] [SemVer](http://semver.org/) compatible metadata versioning;
 - [ ] [BabelJS](https://babeljs.io/) configured to enable modern JS;
