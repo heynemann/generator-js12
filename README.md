@@ -10,6 +10,8 @@ JS12 generator is an yeoman generator that will get you up and running with a 12
 - [ ] Thorough suite of unit tests for generator code;
 - [ ] Comprehensive Makefile to setup, build, test, analyze, dockerize and document your Go Package;
 - [ ] [BabelJS](https://babeljs.io/) configured to enable modern JS;
+- [ ] [Webpack](https://webpack.github.io/) generated output for npm distribution;
+- [ ] [Nodemon](http://nodemon.io/)-powered Web Server to enable "live-reload" of changes;
 - [ ] [Ecmascript 6.0 modules](http://www.2ality.com/2014/09/es6-modules-final.html) support (import * from package);
 - [ ] [Async/Await](https://jakearchibald.com/2014/es7-async-functions/) support (even in tests);
 - [ ] [npm](https://www.npmjs.com/) package manager;
