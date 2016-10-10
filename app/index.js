@@ -21,27 +21,6 @@ const packageContents = [
 
   //.gitignore
   { source: '_gitignore', target: '.gitignore', ctx: getCtxFunc() },
-
-  //glide
-  //{ source: '_glide.yaml', target: 'glide.yaml', ctx: getCtxFunc() },
-
-  //main
-  //{ source: '_suite_test.go', target: 'main_suite_test.go', ctx: getCtxFunc('main', 'Main')},
-  //{ source: '_main.go', target: 'main.go', ctx: getCtxFunc() },
-  //{ source: '_main_test.go', target: 'main_test.go', ctx: getCtxFunc() },
-
-  //metadata
-  //{ source: '_suite_test.go', target: 'metadata/metadata_suite_test.go', ctx: getCtxFunc('metadata', 'Metadata') },
-  //{ source: '_metadata_version.go', target: 'metadata/version.go', ctx: getCtxFunc() },
-  //{ source: '_metadata_version_test.go', target: 'metadata/version_test.go', ctx: getCtxFunc() },
-
-  //cmd
-  //{ source: '_suite_test.go', target: 'cmd/cmd_suite_test.go', ctx: getCtxFunc('cmd', 'Commands') },
-  //{ source: '_cmd_helpers_test.go', target: 'cmd/helpers_test.go', ctx: getCtxFunc() },
-  //{ source: '_cmd_root.go', target: 'cmd/root.go', ctx: getCtxFunc() },
-  //{ source: '_cmd_root_test.go', target: 'cmd/root_test.go', ctx: getCtxFunc() },
-  //{ source: '_cmd_version.go', target: 'cmd/version.go', ctx: getCtxFunc() },
-  //{ source: '_cmd_version_test.go', target: 'cmd/version_test.go', ctx: getCtxFunc() },
 ]
 
 
