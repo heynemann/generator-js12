@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/heynemann/generator-js12.svg?branch=master)](https://travis-ci.org/heynemann/generator-js12)
 [![Coverage Status](https://coveralls.io/repos/github/heynemann/generator-js12/badge.svg?branch=master)](https://coveralls.io/github/heynemann/generator-js12?branch=master)
 
-JS12 generator is an yeoman generator that will get you up and running with a 12-factor app in node.js
+JS12 generator is an yeoman generator that will get you up and running with a 12-factor app in node.js.
 
 ## Features
 
