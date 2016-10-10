@@ -62,7 +62,7 @@ $ npm install -g generator-js12
 
 ## Usage
 
-Go to your package directory (must be inside `$GOPATH`) and run:
+Go to your package directory and run:
 
 ```
 $ yo js12
