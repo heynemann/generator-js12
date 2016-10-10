@@ -19,7 +19,9 @@ JS12 generator is an [yeoman](http://yeoman.io/) generator that will get you up 
 - [ ] Configuration system using [node-config](https://github.com/lorenwest/node-config);
 - [ ] Structured logging using [Bunyan](https://github.com/trentm/node-bunyan);
 - [ ] [yargs.js](http://yargs.js.org/) commands;
-- [ ] Support for [Mocha](https://mochajs.org/) and [Chai](http://chaijs.com/) or [Ava](https://github.com/avajs/ava) test suites, both with code coverage support;
+- [ ] Testing Frameworks:
+    - [ ] [Mocha](https://mochajs.org/) and [Chai](http://chaijs.com/) test suite with [code coverage support](http://gotwarlost.github.io/istanbul/);
+    - [ ] [Ava](https://github.com/avajs/ava) test suite with [code coverage support](https://github.com/istanbuljs/nyc).
 - [ ] Generated code has 100% code coverage in [Mocha](https://mochajs.org/) test suite;
 - [ ] Benchmark of API routes using [matcha](https://github.com/logicalparadox/matcha);
 - [ ] Profiling of API code with [njstrace](https://github.com/valyouw/njstrace);
