@@ -40,6 +40,11 @@
     "eslint-config-airbnb-base": "^8.0.0",
     "eslint-plugin-import": "^1.16.0",
     "json-loader": "^0.5.4",
+		<% if (testingFramework === 'mocha') { %>
+    "chai": "^3.5.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.1.0",
+		<% } -%>
     "undefined": "^0.1.0",
     "webpack": "^1.13.2"
   },
