@@ -1,0 +1,44 @@
+{
+  "name": "generator-js12",
+  "version": "0.1.0",
+  "description": "Yeoman generator",
+  "license": "MIT",
+  "main": "app/index.js",
+  "repository": "heynemann/generator-js12",
+  "author": {
+    "name": "Bernardo Heynemann",
+    "email": "heynemann@gmail.com",
+    "url": "https://github.com/heynemann"
+  },
+  "engines": {
+    "node": ">=6.5.0"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/istanbul cover _mocha"
+  },
+  "files": [
+    "app"
+  ],
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "dependencies": {
+    "chalk": "^1.1.3",
+    "yeoman-generator": "^0.24.1",
+    "yo": "^1.8.5",
+    "yosay": "^1.2.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "coveralls": "^2.11.12",
+    "eslint": "^3.4.0",
+    "istanbul": "^0.4.5",
+    "mocha": "*",
+    "mocha-lcov-reporter": "^1.2.0",
+    "yeoman-assert": "^2.2.1",
+    "yeoman-test": "^1.4.0"
+  },
+  "peerDependencies": {
+    "yo": ">=1.0.0"
+  }
+}
